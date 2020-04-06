@@ -26,6 +26,7 @@ resource "aws_route" "route-public" {
 resource "aws_subnet" "public" {
   vpc_id     = aws_vpc.main.id
   cidr_block = var.public_cidr
+  // availability_zone = var.public_az
 
   tags = {
     Name = "${var.vpc_name}-net-public"
@@ -35,6 +36,7 @@ resource "aws_subnet" "public" {
 resource "aws_subnet" "private" {
   vpc_id     = aws_vpc.main.id
   cidr_block = var.private_cidr
+  // availability_zone = var.private_az
 
   tags = {
     Name = "${var.vpc_name}-net-private"

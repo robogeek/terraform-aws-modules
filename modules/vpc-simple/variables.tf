@@ -27,3 +27,6 @@ variable "vpc_name" {
 
 variable "public_cidr" {}
 variable "private_cidr" {}
+
+// variable "private_az" {}
+// variable "public_az" {}
