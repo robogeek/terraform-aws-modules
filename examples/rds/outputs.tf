@@ -27,6 +27,14 @@ output "db-domain" {
     value = aws_db_instance.default.domain
 }
 
+output "db-endpoint" {
+    value = aws_db_instance.default.endpoint
+}
+
+output "db-hosted_zone_id" {
+    value = aws_db_instance.default.hosted_zone_id
+}
+
 output "db-id" {
     value = aws_db_instance.default.id
 }

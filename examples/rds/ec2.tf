@@ -11,18 +11,20 @@ resource "aws_instance" "public-ec2" {
         Name = "ec2-main"
     }
 
-    depends_on = [ module.vpc.vpc_id, module.vpc.igw_id ]
+    depends_on = [ module.vpc.vpc_id, module.vpc.igw_id, aws_db_instance.default ]
 
     user_data = <<EOF
 #!/bin/sh
 sudo apt-get update
 sudo apt-get install -y mysql-client
+echo ${aws_db_instance.default.address} >/tmp/dbdomain.txt
+sudo mv /tmp/dbdomain.txt /dbdomain.txt
 EOF
 }
 
 resource "aws_security_group" "ec2-sg" {
   name        = "security-group"
-  description = "allow inbound access to the Application task from NGINX"
+  description = "allow inbound access to the EC2 instance"
   vpc_id      = module.vpc.vpc_id
 
   ingress {
